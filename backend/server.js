@@ -4,7 +4,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://your-frontend.vercel.app"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 // Routes
@@ -14,18 +19,14 @@ app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/cart", require("./routes/cartRoutes"));
 app.use("/api/wishlist", require("./routes/wishlistRoutes"));
 
-
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("DB connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
-app.listen(8000, () => console.log("Server running on port 8000"));
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 app.get("/test", (req, res) => {
   res.send("WORKING");
 });
-
-// db username  = ruba
-// db pass = Daneen123
-
-
-// mongodb+srv://ruba:Daneen123@cluster0.gumbzcf.mongodb.net/?appName=Cluster0
