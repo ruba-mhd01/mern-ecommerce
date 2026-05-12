@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
 
@@ -8,7 +6,6 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function ProductCard({ product }) {
   const { openAuth } = useAuth();
-  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
