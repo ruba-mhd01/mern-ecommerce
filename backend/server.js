@@ -6,7 +6,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://mern-ecommerce-neon-one.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "https://mern-ecommerce-neon-one.vercel.app",
+    ],
     credentials: true,
   }),
 );
